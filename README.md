@@ -255,3 +255,11 @@ or equal to those of the children and the lowest key is in the root node
 * *Theta Notation* is used to provide a bound on a particular algorithm such that it can be "sandwiched" between
   two constants (one for an upper limit and one for a lower limit) for sufficiently large values
   
+### IDE
+XCODE
+
+### Machine
+MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports)  
+Processor Name: Quad-Core Intel Core i5
+Processor Speed: 1.4 GHz
+Memory: 8 GB
