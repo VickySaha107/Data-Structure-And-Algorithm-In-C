@@ -1,311 +1,470 @@
 # Data-Structure-And-Algorithm
 ## Data Structures
-### Linked List
- * A *Linked List* is a linear collection of data elements, called nodes, each
-   pointing to the next node by means of a pointer. It is a data structure
-   consisting of a group of nodes which together represent a sequence.
- * **Singly-linked list**: linked list in which each node points to the next node and the last node points to null
- * **Doubly-linked list**: linked list in which each node has two pointers, p and n, such that p points to the previous node and n points to the next node; the last node's n pointer points to null
- * **Circular-linked list**: linked list in which each node points to the next node and the last node points back to the first node
- * Time Complexity:
-   * Access: `O(n)`
-   * Search: `O(n)`
-   * Insert: `O(1)`
-   * Remove: `O(1)`
 
-### Stack
- * A *Stack* is a collection of elements, with two principle operations: *push*, which adds to the collection, and
-   *pop*, which removes the most recently added element
- * **Last in, first out data structure (LIFO)**: the most recently added object is the first to be removed
- * Time Complexity:
-   * Access: `O(n)`
-   * Search: `O(n)`
-   * Insert: `O(1)`
-   * Remove: `O(1)`
+- ### Arrays
+    - Implement an automatically resizing vector.
+    - [ ] Description:
+        - [Arrays (video)](https://www.coursera.org/lecture/data-structures/arrays-OsBSF)
+        - [UC Berkeley CS61B - Linear and Multi-Dim Arrays (video)](https://archive.org/details/ucberkeley_webcast_Wp8oiO_CZZE) (Start watching from 15m 32s)
+        - [Basic Arrays (video)](https://archive.org/details/0102WhatYouShouldKnow/02_04-basicArrays.mp4)
+        - [Multi-dim (video)](https://archive.org/details/0102WhatYouShouldKnow/02_05-multidimensionalArrays.mp4)
+        - [Dynamic Arrays (video)](https://www.coursera.org/lecture/data-structures/dynamic-arrays-EwbnV)
+        - [Jagged Arrays (video)](https://www.youtube.com/watch?v=1jtrQqYpt7g)
+        - [Jagged Arrays (video)](https://archive.org/details/0102WhatYouShouldKnow/02_06-jaggedArrays.mp4)
+        - [Resizing arrays (video)](https://archive.org/details/0102WhatYouShouldKnow/03_01-resizableArrays.mp4)
+    - [ ] Implement a vector (mutable array with automatic resizing):
+        - [ ] Practice coding using arrays and pointers, and pointer math to jump to an index instead of using indexing.
+        - [ ] new raw data array with allocated memory
+            - can allocate int array under the hood, just not use its features
+            - start with 16, or if starting number is greater, use power of 2 - 16, 32, 64, 128
+        - [ ] size() - number of items
+        - [ ] capacity() - number of items it can hold
+        - [ ] is_empty()
+        - [ ] at(index) - returns item at given index, blows up if index out of bounds
+        - [ ] push(item)
+        - [ ] insert(index, item) - inserts item at index, shifts that index's value and trailing elements to the right
+        - [ ] prepend(item) - can use insert above at index 0
+        - [ ] pop() - remove from end, return value
+        - [ ] delete(index) - delete item at index, shifting all trailing elements left
+        - [ ] remove(item) - looks for value and removes index holding it (even if in multiple places)
+        - [ ] find(item) - looks for value and returns first index with that value, -1 if not found
+        - [ ] resize(new_capacity) // private function
+            - when you reach capacity, resize to double the size
+            - when popping an item, if size is 1/4 of capacity, resize to half
+    - [ ] Time
+        - O(1) to add/remove at end (amortized for allocations for more space), index, or update
+        - O(n) to insert/remove elsewhere
+    - [ ] Space
+        - contiguous in memory, so proximity helps performance
+        - space needed = (array capacity, which is >= n) * size of item, but even if 2n, still O(n)
 
-### Queue
- * A *Queue* is a collection of elements, supporting two principle operations: *enqueue*, which inserts an element
-   into the queue, and *dequeue*, which removes an element from the queue
- * **First in, first out data structure (FIFO)**: the oldest added object is the first to be removed
- * Time Complexity:
-   * Access: `O(n)`
-   * Search: `O(n)`
-   * Insert: `O(1)`
-   * Remove: `O(1)`
+- ### Linked Lists
+    - [ ] Description:
+        - [ ] [Singly Linked Lists (video)](https://www.coursera.org/lecture/data-structures/singly-linked-lists-kHhgK)
+        - [ ] [CS 61B - Linked Lists 1 (video)](https://archive.org/details/ucberkeley_webcast_htzJdKoEmO0)
+        - [ ] [CS 61B - Linked Lists 2 (video)](https://archive.org/details/ucberkeley_webcast_-c4I3gFYe3w)
+    - [ ] [C Code (video)](https://www.youtube.com/watch?v=QN6FPiD0Gzo)
+            - not the whole video, just portions about Node struct and memory allocation.
+    - [ ] Linked List vs Arrays:
+        - [Core Linked Lists Vs Arrays (video)](https://www.coursera.org/lecture/data-structures-optimizing-performance/core-linked-lists-vs-arrays-rjBs9)
+        - [In The Real World Linked Lists Vs Arrays (video)](https://www.coursera.org/lecture/data-structures-optimizing-performance/in-the-real-world-lists-vs-arrays-QUaUd)
+    - [ ] [why you should avoid linked lists (video)](https://www.youtube.com/watch?v=YQs6IC-vgmo)
+    - [ ] Gotcha: you need pointer to pointer knowledge:
+        (for when you pass a pointer to a function that may change the address where that pointer points)
+        This page is just to get a grasp on ptr to ptr. I don't recommend this list traversal style. Readability and maintainability suffer due to cleverness.
+        - [Pointers to Pointers](https://www.eskimo.com/~scs/cclass/int/sx8.html)
+    - [ ] implement (I did with tail pointer & without):
+        - [ ] size() - returns number of data elements in list
+        - [ ] empty() - bool returns true if empty
+        - [ ] value_at(index) - returns the value of the nth item (starting at 0 for first)
+        - [ ] push_front(value) - adds an item to the front of the list
+        - [ ] pop_front() - remove front item and return its value
+        - [ ] push_back(value) - adds an item at the end
+        - [ ] pop_back() - removes end item and returns its value
+        - [ ] front() - get value of front item
+        - [ ] back() - get value of end item
+        - [ ] insert(index, value) - insert value at index, so current item at that index is pointed to by new item at index
+        - [ ] erase(index) - removes node at given index
+        - [ ] value_n_from_end(n) - returns the value of the node at nth position from the end of the list
+        - [ ] reverse() - reverses the list
+        - [ ] remove_value(value) - removes the first item in the list with this value
+    - [ ] Doubly-linked List
+        - [Description (video)](https://www.coursera.org/lecture/data-structures/doubly-linked-lists-jpGKD)
+        - No need to implement
 
-### Tree
- * A *Tree* is an undirected, connected, acyclic graph
+- ### Stack
+    - [ ] [Stacks (video)](https://www.coursera.org/lecture/data-structures/stacks-UdKzQ)
+    - [ ] [Using Stacks Last-In First-Out (video)](https://archive.org/details/0102WhatYouShouldKnow/05_01-usingStacksForLast-inFirst-out.mp4)
+    - [ ] Will not implement. Implementing with array is trivial.
 
-### Binary Tree
- * A *Binary Tree* is a tree data structure in which each node has at most two children, which are referred to as
-   the *left child* and *right child*
- * **Full Tree**: a tree in which every node has either 0 or 2 children
- * **Perfect Binary Tree**: a binary tree in which all interior nodes have two children and all leave have the same depth
- * **Complete Tree**: a binary tree in which every level *except possibly the last* is full and all nodes in the last
-   level are as far left as possible
+- ### Queue
+    - [ ] [Using Queues First-In First-Out(video)](https://archive.org/details/0102WhatYouShouldKnow/05_03-usingQueuesForFirst-inFirst-out.mp4)
+    - [ ] [Queue (video)](https://www.coursera.org/lecture/data-structures/queues-EShpq)
+    - [ ] [Circular buffer/FIFO](https://en.wikipedia.org/wiki/Circular_buffer)
+    - [ ] [Priority Queues (video)](https://archive.org/details/0102WhatYouShouldKnow/05_04-priorityQueuesAndDeques.mp4)
+    - [ ] Implement using linked-list, with tail pointer:
+        - enqueue(value) - adds value at position at tail
+        - dequeue() - returns value and removes least recently added element (front)
+        - empty()
+    - [ ] Implement using fixed-sized array:
+        - enqueue(value) - adds item at end of available storage
+        - dequeue() - returns value and removes least recently added element
+        - empty()
+        - full()
+    - [ ] Cost:
+        - a bad implementation using linked list where you enqueue at head and dequeue at tail would be O(n)
+            because you'd need the next to last element, causing a full traversal each dequeue
+        - enqueue: O(1) (amortized, linked list and array [probing])
+        - dequeue: O(1) (linked list and array)
+        - empty: O(1) (linked list and array)
 
-### Binary Search Tree
- * A binary search tree, sometimes called BST, is a type of binary tree which maintains the property that the value in each
-   node must be greater than or equal to any value stored in the left sub-tree, and less than or equal to any value stored
-   in the right sub-tree
- * Time Complexity:
-   * Access: `O(log(n))`
-   * Search: `O(log(n))`
-   * Insert: `O(log(n))`
-   * Remove: `O(log(n))`
+- ### Hash table
+    - [ ] Videos:
+        - [ ] [Hashing with Chaining (video)](https://www.youtube.com/watch?v=0M_kIqhwbFo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=8)
+        - [ ] [Table Doubling, Karp-Rabin (video)](https://www.youtube.com/watch?v=BRO7mVIFt08&index=9&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+        - [ ] [Open Addressing, Cryptographic Hashing (video)](https://www.youtube.com/watch?v=rvdJDijO2Ro&index=10&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+        - [ ] [PyCon 2010: The Mighty Dictionary (video)](https://www.youtube.com/watch?v=C4Kc8xzcA68)
+        - [ ] [(Advanced) Randomization: Universal & Perfect Hashing (video)](https://www.youtube.com/watch?v=z0lJ2k0sl1g&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp&index=11)
+        - [ ] [(Advanced) Perfect hashing (video)](https://www.youtube.com/watch?v=N0COwN14gt0&list=PL2B4EEwhKD-NbwZ4ezj7gyc_3yNrojKM9&index=4)
 
-### Trie
-* A trie, sometimes called a radix or prefix tree, is a kind of search tree that is used to store a dynamic set or associative
-  array where the keys are usually Strings. No node in the tree stores the key associated with that node; instead, its position 
-  in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the String associated 
-  with that node, and the root is associated with the empty String.
+    - [ ] Online Courses:
+        - [ ] [Understanding Hash Functions (video)](https://archive.org/details/0102WhatYouShouldKnow/06_02-understandingHashFunctions.mp4)
+        - [ ] [Using Hash Tables (video)](https://archive.org/details/0102WhatYouShouldKnow/06_03-usingHashTables.mp4)
+        - [ ] [Supporting Hashing (video)](https://archive.org/details/0102WhatYouShouldKnow/06_04-supportingHashing.mp4)
+        - [ ] [Language Support Hash Tables (video)](https://archive.org/details/0102WhatYouShouldKnow/06_05-languageSupportForHashTables.mp4)
+        - [ ] [Core Hash Tables (video)](https://www.coursera.org/lecture/data-structures-optimizing-performance/core-hash-tables-m7UuP)
+        - [ ] [Data Structures (video)](https://www.coursera.org/learn/data-structures/home/week/4)
+        - [ ] [Phone Book Problem (video)](https://www.coursera.org/lecture/data-structures/phone-book-problem-NYZZP)
+        - [ ] distributed hash tables:
+            - [Instant Uploads And Storage Optimization In Dropbox (video)](https://www.coursera.org/lecture/data-structures/instant-uploads-and-storage-optimization-in-dropbox-DvaIb)
+            - [Distributed Hash Tables (video)](https://www.coursera.org/lecture/data-structures/distributed-hash-tables-tvH8H)
 
-### Fenwick Tree
-* A Fenwick tree, sometimes called a binary indexed tree, is a tree in concept, but in practice is implemented as an implicit data
-  structure using an array. Given an index in the array representing a vertex, the index of a vertex's parent or child is calculated
-  through bitwise operations on the binary representation of its index. Each element of the array contains the pre-calculated sum of
-  a range of values, and by combining that sum with additional ranges encountered during an upward traversal to the root, the prefix
-  sum is calculated
-* Time Complexity:
-  * Range Sum: `O(log(n))`
-  * Update: `O(log(n))`
+    - [ ] implement with array using linear probing
+        - hash(k, m) - m is size of hash table
+        - add(key, value) - if key already exists, update value
+        - exists(key)
+        - get(key)
+        - remove(key)
+        
+-### Binary search
+    - [ ] [Binary Search (video)](https://www.youtube.com/watch?v=D5SrAga1pno)
+    - [ ] [Binary Search (video)](https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search)
+    - [ ] [detail](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search/)
+    - [ ] Implement:
+        - binary search (on sorted array of integers)
+        - binary search using recursion
 
-### Segment Tree
-* A Segment tree, is a tree data structure for storing intervals, or segments. It allows querying which of the stored segments contain
-  a given point
-* Time Complexity:
-  * Range Query: `O(log(n))`
-  * Update: `O(log(n))`
+- ### Bitwise operations
+    - [ ] [Bits cheat sheet](https://github.com/jwasham/coding-interview-university/blob/master/extras/cheat%20sheets/bits-cheat-sheet.pdf) - you should know many of the powers of 2 from (2^1 to 2^16 and 2^32)
+    - [ ] Get a really good understanding of manipulating bits with: &, |, ^, ~, >>, <<
+        - [ ] [words](https://en.wikipedia.org/wiki/Word_(computer_architecture))
+        - [ ] Good intro:
+            [Bit Manipulation (video)](https://www.youtube.com/watch?v=7jkIUgLC29I)
+        - [ ] [C Programming Tutorial 2-10: Bitwise Operators (video)](https://www.youtube.com/watch?v=d0AwjSpNXR0)
+        - [ ] [Bit Manipulation](https://en.wikipedia.org/wiki/Bit_manipulation)
+        - [ ] [Bitwise Operation](https://en.wikipedia.org/wiki/Bitwise_operation)
+        - [ ] [Bithacks](https://graphics.stanford.edu/~seander/bithacks.html)
+        - [ ] [The Bit Twiddler](https://bits.stephan-brumme.com/)
+        - [ ] [The Bit Twiddler Interactive](https://bits.stephan-brumme.com/interactive.html)
+        - [ ] [Bit Hacks (video)](https://www.youtube.com/watch?v=ZusiKXcz_ac)
+    - [ ] 2s and 1s complement
+        - [Binary: Plusses & Minuses (Why We Use Two's Complement) (video)](https://www.youtube.com/watch?v=lKTsv6iVxV4)
+        - [1s Complement](https://en.wikipedia.org/wiki/Ones%27_complement)
+        - [2s Complement](https://en.wikipedia.org/wiki/Two%27s_complement)
+    - [ ] count set bits
+        - [4 ways to count bits in a byte (video)](https://youtu.be/Hzuzo9NJrlc)
+        - [Count Bits](https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan)
+        - [How To Count The Number Of Set Bits In a 32 Bit Integer](http://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer)
+    - [ ] swap values:
+        - [Swap](https://bits.stephan-brumme.com/swap.html)
+    - [ ] absolute value:
+        - [Absolute Integer](https://bits.stephan-brumme.com/absInteger.html)
 
-### Heap
-* A *Heap* is a specialized tree based structure data structure that satisfies the *heap* property: if A is a parent node of
-B, then the key (the value) of node A is ordered with respect to the key of node B with the same ordering applying across the entire heap.
-A heap can be classified further as either a "max heap" or a "min heap". In a max heap, the keys of parent nodes are always greater
-than or equal to those of the children and the highest key is in the root node. In a min heap, the keys of parent nodes are less than
-or equal to those of the children and the lowest key is in the root node
-* Time Complexity:
-  * Access Max / Min: `O(1)`
-  * Insert: `O(log(n))`
-  * Remove Max / Min: `O(log(n))`
+## Trees
 
-### Hashing
-* *Hashing* is used to map data of an arbitrary size to data of a fixed size. The values returned by a hash
-  function are called hash values, hash codes, or simply hashes. If two keys map to the same value, a collision occurs
-* **Hash Map**: a *hash map* is a structure that can map keys to values. A hash map uses a hash function to compute
-  an index into an array of buckets or slots, from which the desired value can be found.
-* Collision Resolution
- * **Separate Chaining**: in *separate chaining*, each bucket is independent, and contains a list of entries for each index. The
- time for hash map operations is the time to find the bucket (constant time), plus the time to iterate through the list
- * **Open Addressing**: in *open addressing*, when a new entry is inserted, the buckets are examined, starting with the
- hashed-to-slot and proceeding in some sequence, until an unoccupied slot is found. The name open addressing refers to
- the fact that the location of an item is not always determined by its hash value
+- ### Trees - Notes & Background
+    - [ ] [Series: Core Trees (video)](https://www.coursera.org/lecture/data-structures-optimizing-performance/core-trees-ovovP)
+    - [ ] [Series: Trees (video)](https://www.coursera.org/lecture/data-structures/trees-95qda)
+    - basic tree construction
+    - traversal
+    - manipulation algorithms
+    - [ ] [BFS(breadth-first search) and DFS(depth-first search) (video)](https://www.youtube.com/watch?v=uWL6FJhq5fM)
+        - BFS notes:
+           - level order (BFS, using queue)
+           - time complexity: O(n)
+           - space complexity: best: O(1), worst: O(n/2)=O(n)
+        - DFS notes:
+            - time complexity: O(n)
+            - space complexity:
+                best: O(log n) - avg. height of tree
+                worst: O(n)
+            - inorder (DFS: left, self, right)
+            - postorder (DFS: left, right, self)
+            - preorder (DFS: self, left, right)
+
+- ### Binary search trees: BSTs
+    - [ ] [Binary Search Tree Review (video)](https://www.youtube.com/watch?v=x6At0nzX92o&index=1&list=PLA5Lqm4uh9Bbq-E0ZnqTIa8LRaL77ica6)
+    - [ ] [Series (video)](https://www.coursera.org/learn/data-structures-optimizing-performance/lecture/p82sw/core-introduction-to-binary-search-trees)
+        - starts with symbol table and goes through BST applications
+    - [ ] [Introduction (video)](https://www.coursera.org/learn/data-structures/lecture/E7cXP/introduction)
+    - [ ] [MIT (video)](https://www.youtube.com/watch?v=9Jry5-82I68)
+    - C/C++:
+        - [ ] [Binary search tree - Implementation in C/C++ (video)](https://www.youtube.com/watch?v=COZK7NATh4k&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&index=28)
+        - [ ] [BST implementation - memory allocation in stack and heap (video)](https://www.youtube.com/watch?v=hWokyBoo0aI&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&index=29)
+        - [ ] [Find min and max element in a binary search tree (video)](https://www.youtube.com/watch?v=Ut90klNN264&index=30&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+        - [ ] [Find height of a binary tree (video)](https://www.youtube.com/watch?v=_pnqMz5nrRs&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&index=31)
+        - [ ] [Binary tree traversal - breadth-first and depth-first strategies (video)](https://www.youtube.com/watch?v=9RHO6jU--GU&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&index=32)
+        - [ ] [Binary tree: Level Order Traversal (video)](https://www.youtube.com/watch?v=86g8jAQug04&index=33&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+        - [ ] [Binary tree traversal: Preorder, Inorder, Postorder (video)](https://www.youtube.com/watch?v=gm8DUJJhmY4&index=34&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+        - [ ] [Check if a binary tree is binary search tree or not (video)](https://www.youtube.com/watch?v=yEwSGhSsT0U&index=35&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+        - [ ] [Delete a node from Binary Search Tree (video)](https://www.youtube.com/watch?v=gcULXE7ViZw&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&index=36)
+        - [ ] [Inorder Successor in a binary search tree (video)](https://www.youtube.com/watch?v=5cPbNCrdotA&index=37&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+    - [ ] Implement:
+        - [ ] insert    // insert value into tree
+        - [ ] get_node_count // get count of values stored
+        - [ ] print_values // prints the values in the tree, from min to max
+        - [ ] delete_tree
+        - [ ] is_in_tree // returns true if given value exists in the tree
+        - [ ] get_height // returns the height in nodes (single node's height is 1)
+        - [ ] get_min   // returns the minimum value stored in the tree
+        - [ ] get_max   // returns the maximum value stored in the tree
+        - [ ] is_binary_search_tree
+        - [ ] delete_value
+        - [ ] get_successor // returns next-highest value in tree after given value, -1 if none
+
+- ### Heap / Priority Queue / Binary Heap
+    - visualized as a tree, but is usually linear in storage (array, linked list)
+    - [ ] [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure))
+    - [ ] [Introduction (video)](https://www.coursera.org/learn/data-structures/lecture/2OpTs/introduction)
+    - [ ] [Naive Implementations (video)](https://www.coursera.org/learn/data-structures/lecture/z3l9N/naive-implementations)
+    - [ ] [Binary Trees (video)](https://www.coursera.org/learn/data-structures/lecture/GRV2q/binary-trees)
+    - [ ] [Tree Height Remark (video)](https://www.coursera.org/learn/data-structures/supplement/S5xxz/tree-height-remark)
+    - [ ] [Basic Operations (video)](https://www.coursera.org/learn/data-structures/lecture/0g1dl/basic-operations)
+    - [ ] [Complete Binary Trees (video)](https://www.coursera.org/learn/data-structures/lecture/gl5Ni/complete-binary-trees)
+    - [ ] [Pseudocode (video)](https://www.coursera.org/learn/data-structures/lecture/HxQo9/pseudocode)
+    - [ ] [Heap Sort - jumps to start (video)](https://youtu.be/odNJmw5TOEE?list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&t=3291)
+    - [ ] [Heap Sort (video)](https://www.coursera.org/learn/data-structures/lecture/hSzMO/heap-sort)
+    - [ ] [Building a heap (video)](https://www.coursera.org/learn/data-structures/lecture/dwrOS/building-a-heap)
+    - [ ] [MIT: Heaps and Heap Sort (video)](https://www.youtube.com/watch?v=B7hVxCmfPtM&index=4&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+    - [ ] [CS 61B Lecture 24: Priority Queues (video)](https://archive.org/details/ucberkeley_webcast_yIUFT6AKBGE)
+    - [ ] [Linear Time BuildHeap (max-heap)](https://www.youtube.com/watch?v=MiyLo8adrWw)
+    - [ ] Implement a max-heap:
+        - [ ] insert
+        - [ ] sift_up - needed for insert
+        - [ ] get_max - returns the max item, without removing it
+        - [ ] get_size() - return number of elements stored
+        - [ ] is_empty() - returns true if heap contains no elements
+        - [ ] extract_max - returns the max item, removing it
+        - [ ] sift_down - needed for extract_max
+        - [ ] remove(i) - removes item at index x
+        - [ ] heapify - create a heap from an array of elements, needed for heap_sort
+        - [ ] heap_sort() - take an unsorted array and turn it into a sorted array in-place using a max heap
+            - note: using a min heap instead would save operations, but double the space needed (cannot do in-place).
+
+## Sorting
+
+- [ ] Notes:
+    - Implement sorts & know best case/worst case, average complexity of each:
+        - no bubble sort - it's terrible - O(n^2), except when n <= 16
+    - [ ] stability in sorting algorithms ("Is Quicksort stable?")
+        - [Sorting Algorithm Stability](https://en.wikipedia.org/wiki/Sorting_algorithm#Stability)
+        - [Stability In Sorting Algorithms](http://stackoverflow.com/questions/1517793/stability-in-sorting-algorithms)
+        - [Stability In Sorting Algorithms](http://www.geeksforgeeks.org/stability-in-sorting-algorithms/)
+        - [Sorting Algorithms - Stability](http://homepages.math.uic.edu/~leon/cs-mcs401-s08/handouts/stability.pdf)
+    - [ ] Which algorithms can be used on linked lists? Which on arrays? Which on both?
+        - I wouldn't recommend sorting a linked list, but merge sort is doable.
+        - [Merge Sort For Linked List](http://www.geeksforgeeks.org/merge-sort-for-linked-list/)
+
+- For heapsort, see Heap data structure above. Heap sort is great, but not stable.
+
+- [ ] [Sedgewick - Mergesort (5 videos)](https://www.coursera.org/learn/algorithms-part1/home/week/3)
+    - [ ] [1. Mergesort](https://www.coursera.org/learn/algorithms-part1/lecture/ARWDq/mergesort)
+    - [ ] [2. Bottom up Mergesort](https://www.coursera.org/learn/algorithms-part1/lecture/PWNEl/bottom-up-mergesort)
+    - [ ] [3. Sorting Complexity](https://www.coursera.org/learn/algorithms-part1/lecture/xAltF/sorting-complexity)
+    - [ ] [4. Comparators](https://www.coursera.org/learn/algorithms-part1/lecture/9FYhS/comparators)
+    - [ ] [5. Stability](https://www.coursera.org/learn/algorithms-part1/lecture/pvvLZ/stability)
+
+- [ ] [Sedgewick - Quicksort (4 videos)](https://www.coursera.org/learn/algorithms-part1/home/week/3)
+    - [ ] [1. Quicksort](https://www.coursera.org/learn/algorithms-part1/lecture/vjvnC/quicksort)
+    - [ ] [2. Selection](https://www.coursera.org/learn/algorithms-part1/lecture/UQxFT/selection)
+    - [ ] [3. Duplicate Keys](https://www.coursera.org/learn/algorithms-part1/lecture/XvjPd/duplicate-keys)
+    - [ ] [4. System Sorts](https://www.coursera.org/learn/algorithms-part1/lecture/QBNZ7/system-sorts)
+
+- [ ] UC Berkeley:
+    - [ ] [CS 61B Lecture 29: Sorting I (video)](https://archive.org/details/ucberkeley_webcast_EiUvYS2DT6I)
+    - [ ] [CS 61B Lecture 30: Sorting II (video)](https://archive.org/details/ucberkeley_webcast_2hTY3t80Qsk)
+    - [ ] [CS 61B Lecture 32: Sorting III (video)](https://archive.org/details/ucberkeley_webcast_Y6LOLpxg6Dc)
+    - [ ] [CS 61B Lecture 33: Sorting V (video)](https://archive.org/details/ucberkeley_webcast_qNMQ4ly43p4)
+
+- [ ] [Bubble Sort (video)](https://www.youtube.com/watch?v=P00xJgWzz2c&index=1&list=PL89B61F78B552C1AB)
+- [ ] [Analyzing Bubble Sort (video)](https://www.youtube.com/watch?v=ni_zk257Nqo&index=7&list=PL89B61F78B552C1AB)
+- [ ] [Insertion Sort, Merge Sort (video)](https://www.youtube.com/watch?v=Kg4bqzAqRBM&index=3&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+- [ ] [Insertion Sort (video)](https://www.youtube.com/watch?v=c4BRHC7kTaQ&index=2&list=PL89B61F78B552C1AB)
+- [ ] [Merge Sort (video)](https://www.youtube.com/watch?v=GCae1WNvnZM&index=3&list=PL89B61F78B552C1AB)
+- [ ] [Quicksort (video)](https://www.youtube.com/watch?v=y_G9BkAm6B8&index=4&list=PL89B61F78B552C1AB)
+- [ ] [Selection Sort (video)](https://www.youtube.com/watch?v=6nDMgr0-Yyo&index=8&list=PL89B61F78B552C1AB)
+
+- [ ] Merge sort code:
+    - [ ] [Using output array (C)](http://www.cs.yale.edu/homes/aspnes/classes/223/examples/sorting/mergesort.c)
+    - [ ] [Using output array (Python)](https://github.com/jwasham/practice-python/blob/master/merge_sort/merge_sort.py)
+    - [ ] [In-place (C++)](https://github.com/jwasham/practice-cpp/blob/master/merge_sort/merge_sort.cc)
+- [ ] Quick sort code:
+    - [ ] [Implementation (C)](http://www.cs.yale.edu/homes/aspnes/classes/223/examples/randomization/quick.c)
+    - [ ] [Implementation (C)](https://github.com/jwasham/practice-c/blob/master/quick_sort/quick_sort.c)
+    - [ ] [Implementation (Python)](https://github.com/jwasham/practice-python/blob/master/quick_sort/quick_sort.py)
+
+- [ ] Implement:
+    - [ ] Mergesort: O(n log n) average and worst case
+    - [ ] Quicksort O(n log n) average case
+    - Selection sort and insertion sort are both O(n^2) average and worst case
+    - For heapsort, see Heap data structure above.
+
+- [ ] Not required, but I recommended them:
+    - [ ] [Sedgewick - Radix Sorts (6 videos)](https://www.coursera.org/learn/algorithms-part2/home/week/3)
+        - [ ] [1. Strings in Java](https://www.coursera.org/learn/algorithms-part2/lecture/vGHvb/strings-in-java)
+        - [ ] [2. Key Indexed Counting](https://www.coursera.org/learn/algorithms-part2/lecture/2pi1Z/key-indexed-counting)
+        - [ ] [3. Least Significant Digit First String Radix Sort](https://www.coursera.org/learn/algorithms-part2/lecture/c1U7L/lsd-radix-sort)
+        - [ ] [4. Most Significant Digit First String Radix Sort](https://www.coursera.org/learn/algorithms-part2/lecture/gFxwG/msd-radix-sort)
+        - [ ] [5. 3 Way Radix Quicksort](https://www.coursera.org/learn/algorithms-part2/lecture/crkd5/3-way-radix-quicksort)
+        - [ ] [6. Suffix Arrays](https://www.coursera.org/learn/algorithms-part2/lecture/TH18W/suffix-arrays)
+    - [ ] [Radix Sort](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html#radixSort)
+    - [ ] [Radix Sort (video)](https://www.youtube.com/watch?v=xhr26ia4k38)
+    - [ ] [Radix Sort, Counting Sort (linear time given constraints) (video)](https://www.youtube.com/watch?v=Nz1KZXbghj8&index=7&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+    - [ ] [Randomization: Matrix Multiply, Quicksort, Freivalds' algorithm (video)](https://www.youtube.com/watch?v=cNB2lADK3_s&index=8&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp)
+    - [ ] [Sorting in Linear Time (video)](https://www.youtube.com/watch?v=pOKy3RZbSws&list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf&index=14)
+
+As a summary, here is a visual representation of [15 sorting algorithms](https://www.youtube.com/watch?v=kPRA0W1kECg).
+If you need more detail on this subject, see "Sorting" section in [Additional Detail on Some Subjects](#additional-detail-on-some-subjects)
+
+## Graphs
+
+Graphs can be used to represent many problems in computer science, so this section is long, like trees and sorting were.
+
+- Notes:
+    - There are 4 basic ways to represent a graph in memory:
+        - objects and pointers
+        - adjacency matrix
+        - adjacency list
+        - adjacency map
+    - Familiarize yourself with each representation and its pros & cons
+    - BFS and DFS - know their computational complexity, their tradeoffs, and how to implement them in real code
+    - When asked a question, look for a graph-based solution first, then move on if none.
+
+- [ ] MIT(videos):
+    - [ ] [Breadth-First Search](https://www.youtube.com/watch?v=s-CYnVz-uh4&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=13)
+    - [ ] [Depth-First Search](https://www.youtube.com/watch?v=AfSk24UTFS8&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=14)
+
+- [ ] Skiena Lectures - great intro:
+    - [ ] [CSE373 2012 - Lecture 11 - Graph Data Structures (video)](https://www.youtube.com/watch?v=OiXxhDrFruw&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&index=11)
+    - [ ] [CSE373 2012 - Lecture 12 - Breadth-First Search (video)](https://www.youtube.com/watch?v=g5vF8jscteo&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&index=12)
+    - [ ] [CSE373 2012 - Lecture 13 - Graph Algorithms (video)](https://www.youtube.com/watch?v=S23W6eTcqdY&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&index=13)
+    - [ ] [CSE373 2012 - Lecture 14 - Graph Algorithms (con't) (video)](https://www.youtube.com/watch?v=WitPBKGV0HY&index=14&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b)
+    - [ ] [CSE373 2012 - Lecture 15 - Graph Algorithms (con't 2) (video)](https://www.youtube.com/watch?v=ia1L30l7OIg&index=15&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b)
+    - [ ] [CSE373 2012 - Lecture 16 - Graph Algorithms (con't 3) (video)](https://www.youtube.com/watch?v=jgDOQq6iWy8&index=16&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b)
+
+- [ ] Graphs (review and more):
+
+    - [ ] [6.006 Single-Source Shortest Paths Problem (video)](https://www.youtube.com/watch?v=Aa2sqUhIn-E&index=15&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+    - [ ] [6.006 Dijkstra (video)](https://www.youtube.com/watch?v=2E7MmKv0Y24&index=16&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
+    - [ ] [6.006 Bellman-Ford (video)](https://www.youtube.com/watch?v=ozsuci5pIso&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=17)
+    - [ ] [6.006 Speeding Up Dijkstra (video)](https://www.youtube.com/watch?v=CHvQ3q_gJ7E&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=18)
+    - [ ] [Aduni: Graph Algorithms I - Topological Sorting, Minimum Spanning Trees, Prim's Algorithm -  Lecture 6 (video)]( https://www.youtube.com/watch?v=i_AQT_XfvD8&index=6&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm)
+    - [ ] [Aduni: Graph Algorithms II - DFS, BFS, Kruskal's Algorithm, Union Find Data Structure - Lecture 7 (video)]( https://www.youtube.com/watch?v=ufj5_bppBsA&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&index=7)
+    - [ ] [Aduni: Graph Algorithms III: Shortest Path - Lecture 8 (video)](https://www.youtube.com/watch?v=DiedsPsMKXc&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&index=8)
+    - [ ] [Aduni: Graph Alg. IV: Intro to geometric algorithms - Lecture 9 (video)](https://www.youtube.com/watch?v=XIAQRlNkJAw&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&index=9)
+    - [ ] ~~[CS 61B 2014 (starting at 58:09) (video)](https://youtu.be/dgjX4HdMI-Q?list=PL-XXv-cvA_iAlnI-BQr9hjqADPBtujFJd&t=3489)~~
+    - [ ] [CS 61B 2014: Weighted graphs (video)](https://archive.org/details/ucberkeley_webcast_zFbq8vOZ_0k)
+    - [ ] [Greedy Algorithms: Minimum Spanning Tree (video)](https://www.youtube.com/watch?v=tKwnms5iRBU&index=16&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp)
+    - [ ] [Strongly Connected Components Kosaraju's Algorithm Graph Algorithm (video)](https://www.youtube.com/watch?v=RpgcYiky7uw)
+
+- Full Coursera Course:
+    - [ ] [Algorithms on Graphs (video)](https://www.coursera.org/learn/algorithms-on-graphs/home/welcome)
+
+- I'll implement:
+    - [ ] DFS with adjacency list (recursive)
+    - [ ] DFS with adjacency list (iterative with stack)
+    - [ ] DFS with adjacency matrix (recursive)
+    - [ ] DFS with adjacency matrix (iterative with stack)
+    - [ ] BFS with adjacency list
+    - [ ] BFS with adjacency matrix
+    - [ ] single-source shortest path (Dijkstra)
+    - [ ] minimum spanning tree
+    - DFS-based algorithms (see Aduni videos above):
+        - [ ] check for cycle (needed for topological sort, since we'll check for cycle before starting)
+        - [ ] topological sort
+        - [ ] count connected components in a graph
+        - [ ] list strongly connected components
+        - [ ] check for bipartite graph
+
+- ### Recursion
+    - [ ] Stanford lectures on recursion & backtracking:
+        - [ ] [Lecture 8 | Programming Abstractions (video)](https://www.youtube.com/watch?v=gl3emqCuueQ&list=PLFE6E58F856038C69&index=8)
+        - [ ] [Lecture 9 | Programming Abstractions (video)](https://www.youtube.com/watch?v=uFJhEPrbycQ&list=PLFE6E58F856038C69&index=9)
+        - [ ] [Lecture 10 | Programming Abstractions (video)](https://www.youtube.com/watch?v=NdF1QDTRkck&index=10&list=PLFE6E58F856038C69)
+        - [ ] [Lecture 11 | Programming Abstractions (video)](https://www.youtube.com/watch?v=p-gpaIGRCQI&list=PLFE6E58F856038C69&index=11)
+    - when it is appropriate to use it
+    - how is tail recursion better than not?
+        - [ ] [What Is Tail Recursion Why Is It So Bad?](https://www.quora.com/What-is-tail-recursion-Why-is-it-so-bad)
+        - [ ] [Tail Recursion (video)](https://www.youtube.com/watch?v=L1jjXGfxozc)
+
+- ### Dynamic Programming
+    - You probably won't see any dynamic programming problems in your interview, but it's worth being able to recognize a problem as being a candidate for dynamic programming.
+    - This subject can be pretty difficult, as each DP soluble problem must be defined as a recursion relation, and coming up with it can be tricky.
+    - I suggest looking at many examples of DP problems until you have a solid understanding of the pattern involved.
+    - [ ] Videos:
+        - the Skiena videos can be hard to follow since he sometimes uses the whiteboard, which is too small to see
+        - [ ] [Skiena: CSE373 2012 - Lecture 19 - Introduction to Dynamic Programming (video)](https://youtu.be/Qc2ieXRgR0k?list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&t=1718)
+        - [ ] [Skiena: CSE373 2012 - Lecture 20 - Edit Distance (video)](https://youtu.be/IsmMhMdyeGY?list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&t=2749)
+        - [ ] [Skiena: CSE373 2012 - Lecture 21 - Dynamic Programming Examples (video)](https://youtu.be/o0V9eYF4UI8?list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&t=406)
+        - [ ] [Skiena: CSE373 2012 - Lecture 22 - Applications of Dynamic Programming (video)](https://www.youtube.com/watch?v=dRbMC1Ltl3A&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&index=22)
+        - [ ] [Simonson: Dynamic Programming 0 (starts at 59:18) (video)](https://youtu.be/J5aJEcOr6Eo?list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&t=3558)
+        - [ ] [Simonson: Dynamic Programming I - Lecture 11 (video)](https://www.youtube.com/watch?v=0EzHjQ_SOeU&index=11&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm)
+        - [ ] [Simonson: Dynamic programming II - Lecture 12 (video)](https://www.youtube.com/watch?v=v1qiRwuJU7g&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&index=12)
+        - [ ] List of individual DP problems (each is short):
+            [Dynamic Programming (video)](https://www.youtube.com/playlist?list=PLrmLmBdmIlpsHaNTPP_jHHDx_os9ItYXr)
+    - [ ] Yale Lecture notes:
+        - [ ] [Dynamic Programming](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html#dynamicProgramming)
+    - [ ] Coursera:
+        - [ ] [The RNA secondary structure problem (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/80RrW/the-rna-secondary-structure-problem)
+        - [ ] [A dynamic programming algorithm (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/PSonq/a-dynamic-programming-algorithm)
+        - [ ] [Illustrating the DP algorithm (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/oUEK2/illustrating-the-dp-algorithm)
+        - [ ] [Running time of the DP algorithm (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/nfK2r/running-time-of-the-dp-algorithm)
+        - [ ] [DP vs. recursive implementation (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/M999a/dp-vs-recursive-implementation)
+        - [ ] [Global pairwise sequence alignment (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/UZ7o6/global-pairwise-sequence-alignment)
+        - [ ] [Local pairwise sequence alignment (video)](https://www.coursera.org/learn/algorithmic-thinking-2/lecture/WnNau/local-pairwise-sequence-alignment)
+
+- ### Combinatorics (n choose k) & Probability
+    - [ ] [Math Skills: How to find Factorial, Permutation and Combination (Choose) (video)](https://www.youtube.com/watch?v=8RRo6Ti9d0U)
+    - [ ] [Make School: Probability (video)](https://www.youtube.com/watch?v=sZkAAk9Wwa4)
+    - [ ] [Make School: More Probability and Markov Chains (video)](https://www.youtube.com/watch?v=dNaJg-mLobQ)
+    - [ ] Khan Academy:
+        - Course layout:
+            - [ ] [Basic Theoretical Probability](https://www.khanacademy.org/math/probability/probability-and-combinatorics-topic)
+        - Just the videos - 41 (each are simple and each are short):
+            - [ ] [Probability Explained (video)](https://www.youtube.com/watch?v=uzkc-qNVoOk&list=PLC58778F28211FA19)
+
+- ### NP, NP-Complete and Approximation Algorithms
+    - Know about the most famous classes of NP-complete problems, such as traveling salesman and the knapsack problem,
+        and be able to recognize them when an interviewer asks you them in disguise.
+    - Know what NP-complete means.
+    - [ ] [Computational Complexity (video)](https://www.youtube.com/watch?v=moPtwq_cVH8&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=23)
+    - [ ] Simonson:
+        - [ ] [Greedy Algs. II & Intro to NP Completeness (video)](https://youtu.be/qcGnJ47Smlo?list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&t=2939)
+        - [ ] [NP Completeness II & Reductions (video)](https://www.youtube.com/watch?v=e0tGC6ZQdQE&index=16&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm)
+        - [ ] [NP Completeness III (Video)](https://www.youtube.com/watch?v=fCX1BGT3wjE&index=17&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm)
+        - [ ] [NP Completeness IV (video)](https://www.youtube.com/watch?v=NKLDp3Rch3M&list=PLFDnELG9dpVxQCxuD-9BSy2E7BWY3t5Sm&index=18)
+    - [ ] Skiena:
+        - [ ] [CSE373 2012 - Lecture 23 - Introduction to NP-Completeness (video)](https://youtu.be/KiK5TVgXbFg?list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b&t=1508)
+        - [ ] [CSE373 2012 - Lecture 24 - NP-Completeness Proofs (video)](https://www.youtube.com/watch?v=27Al52X3hd4&index=24&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b)
+        - [ ] [CSE373 2012 - Lecture 25 - NP-Completeness Challenge (video)](https://www.youtube.com/watch?v=xCPH4gwIIXM&index=25&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b)
+    - [ ] [Complexity: P, NP, NP-completeness, Reductions (video)](https://www.youtube.com/watch?v=eHZifpgyH_4&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp&index=22)
+    - [ ] [Complexity: Approximation Algorithms (video)](https://www.youtube.com/watch?v=MEz1J9wY2iM&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp&index=24)
+    - [ ] [Complexity: Fixed-Parameter Algorithms (video)](https://www.youtube.com/watch?v=4q-jmGrmxKs&index=25&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp)
+    - Peter Norvig discusses near-optimal solutions to traveling salesman problem:
+        - [Jupyter Notebook](http://nbviewer.jupyter.org/url/norvig.com/ipython/TSP.ipynb)
+    - Pages 1048 - 1140 in CLRS if you have it.
+
+- ### Tries
+    - Note there are different kinds of tries. Some have prefixes, some don't, and some use string instead of bits
+        to track the path.
+    - I read through code, but will not implement.
+    - [ ] [Sedgewick - Tries (3 videos)](https://www.coursera.org/learn/algorithms-part2/home/week/4)
+        - [ ] [1. R Way Tries](https://www.coursera.org/learn/algorithms-part2/lecture/CPVdr/r-way-tries)
+        - [ ] [2. Ternary Search Tries](https://www.coursera.org/learn/algorithms-part2/lecture/yQM8K/ternary-search-tries)
+        - [ ] [3. Character Based Operations](https://www.coursera.org/learn/algorithms-part2/lecture/jwNmV/character-based-operations)
+    - [ ] [Notes on Data Structures and Programming Techniques](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html#Tries)
+    - [ ] Short course videos:
+        - [ ] [Introduction To Tries (video)](https://www.coursera.org/learn/data-structures-optimizing-performance/lecture/08Xyf/core-introduction-to-tries)
+        - [ ] [Performance Of Tries (video)](https://www.coursera.org/learn/data-structures-optimizing-performance/lecture/PvlZW/core-performance-of-tries)
+        - [ ] [Implementing A Trie (video)](https://www.coursera.org/learn/data-structures-optimizing-performance/lecture/DFvd3/core-implementing-a-trie)
+    - [ ] [The Trie: A Neglected Data Structure](https://www.toptal.com/java/the-trie-a-neglected-data-structure)
+    - [ ] [TopCoder - Using Tries](https://www.topcoder.com/community/competitive-programming/tutorials/using-tries/)
+    - [ ] [Stanford Lecture (real world use case) (video)](https://www.youtube.com/watch?v=TJ8SkcUSdbU)
+    - [ ] [MIT, Advanced Data Structures, Strings (can get pretty obscure about halfway through) (video)](https://www.youtube.com/watch?v=NinWEPPrkDQ&index=16&list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf)
 
 
-### Graph
-* A *Graph* is an ordered pair of G = (V, E) comprising a set V of vertices or nodes together with a set E of edges or arcs,
-  which are 2-element subsets of V (i.e. an edge is associated with two vertices, and that association takes the form of the
-  unordered pair comprising those two vertices)
- * **Undirected Graph**: a graph in which the adjacency relation is symmetric. So if there exists an edge from node u to node
- v (u -> v), then it is also the case that there exists an edge from node v to node u (v -> u)
- * **Directed Graph**: a graph in which the adjacency relation is not symmetric. So if there exists an edge from node u to node v
- (u -> v), this does *not* imply that there exists an edge from node v to node u (v -> u)
 
 
-## Algorithms
-
-### Sorting
-
-#### Quicksort
-* Stable: `No`
-* Time Complexity:
-  * Best Case: `O(nlog(n))`
-  * Worst Case: `O(n^2)`
-  * Average Case: `O(nlog(n))`
-
-#### Mergesort
-* *Mergesort* is also a divide and conquer algorithm. It continuously divides an array into two halves, recurses on both the
-  left subarray and right subarray and then merges the two sorted halves
-* Stable: `Yes`
-* Time Complexity:
-  * Best Case: `O(nlog(n))`
-  * Worst Case: `O(nlog(n))`
-  * Average Case: `O(nlog(n))`
-
-#### Bucket Sort
-* *Bucket Sort* is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket
-  is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm
-* Time Complexity:
-  * Best Case: `Ω(n + k)`
-  * Worst Case: `O(n^2)`
-  * Average Case:`Θ(n + k)`
-
-#### Radix Sort
-* *Radix Sort* is a sorting algorithm that like bucket sort, distributes elements of an array into a number of buckets. However, radix
-  sort differs from bucket sort by 're-bucketing' the array after the initial pass as opposed to sorting each bucket and merging
-* Time Complexity:
-  * Best Case: `Ω(nk)`
-  * Worst Case: `O(nk)`
-  * Average Case: `Θ(nk)`
-
-### Graph Algorithms
-
-#### Depth First Search
-* *Depth First Search* is a graph traversal algorithm which explores as far as possible along each branch before backtracking
-* Time Complexity: `O(|V| + |E|)`
-
-#### Breadth First Search
-* *Breadth First Search* is a graph traversal algorithm which explores the neighbor nodes first, before moving to the next
-  level neighbors
-* Time Complexity: `O(|V| + |E|)`
-
-#### Topological Sort
-* *Topological Sort* is the linear ordering of a directed graph's nodes such that for every edge from node u to node v, u
-  comes before v in the ordering
-* Time Complexity: `O(|V| + |E|)`
-
-#### Dijkstra's Algorithm
-* *Dijkstra's Algorithm* is an algorithm for finding the shortest path between nodes in a graph
-* Time Complexity: `O(|V|^2)`
-
-#### Bellman-Ford Algorithm
-* *Bellman-Ford Algorithm* is an algorithm that computes the shortest paths from a single source node to all other nodes in a weighted graph
-* Although it is slower than Dijkstra's, it is more versatile, as it is capable of handling graphs in which some of the edge weights are
-  negative numbers
-* Time Complexity:
-  * Best Case: `O(|E|)`
-  * Worst Case: `O(|V||E|)`
-
-#### Floyd-Warshall Algorithm
-* *Floyd-Warshall Algorithm* is an algorithm for finding the shortest paths in a weighted graph with positive or negative edge weights, but
-  no negative cycles
-* A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between *all* pairs of nodes
-* Time Complexity:
-  * Best Case: `O(|V|^3)`
-  * Worst Case: `O(|V|^3)`
-  * Average Case: `O(|V|^3)`
-
-#### Prim's Algorithm
-* *Prim's Algorithm* is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. In other words, Prim's find a
-  subset of edges that forms a tree that includes every node in the graph
-* Time Complexity: `O(|V|^2)`
-
-
-#### Kruskal's Algorithm
-* *Kruskal's Algorithm* is also a greedy algorithm that finds a minimum spanning tree in a graph. However, in Kruskal's, the graph does not
-  have to be connected
-* Time Complexity: `O(|E|log|V|)`
-
-## Greedy Algorithms
-* *Greedy Algorithms* are algorithms that make locally optimal choices at each step in the hope of eventually reaching the globally optimal solution
-* Problems must exhibit two properties in order to implement a Greedy solution:
- * Optimal Substructure
-    * An optimal solution to the problem contains optimal solutions to the given problem's subproblems
- * The Greedy Property
-    * An optimal solution is reached by "greedily" choosing the locally optimal choice without ever reconsidering previous choices
-* Example - Coin Change
-    * Given a target amount V cents and a list of denominations of n coins, i.e. we have coinValue[i] (in cents) for coin types i from [0...n - 1],
-      what is the minimum number of coins that we must use to represent amount V? Assume that we have an unlimited supply of coins of any type
-    * Coins - Penny (1 cent), Nickel (5 cents), Dime (10 cents), Quarter (25 cents)
-    * Assume V = 41. We can use the Greedy algorithm of continuously selecting the largest coin denomination less than or equal to V, subtract that
-      coin's value from V, and repeat.
-    * V = 41 | 0 coins used
-    * V = 16 | 1 coin used (41 - 25 = 16)
-    * V = 6  | 2 coins used (16 - 10 = 6)
-    * V = 1  | 3 coins used (6 - 5 = 1)
-    * V = 0  | 4 coins used (1 - 1 = 0)
-    * Using this algorithm, we arrive at a total of 4 coins which is optimal
-
-## Bitmasks
-* Bitmasking is a technique used to perform operations at the bit level. Leveraging bitmasks often leads to faster runtime complexity and
-  helps limit memory usage
-* Test kth bit: `s & (1 << k);`
-* Set kth bit: `s |= (1 << k);`
-* Turn off kth bit: `s &= ~(1 << k);`
-* Toggle kth bit: `s ^= (1 << k);`
-* Multiple by 2<sup>n</sup>: `s << n;`
-* Divide by 2<sup>n</sup>: `s >> n;`
-* Intersection: `s & t;`
-* Union: `s | t;`
-* Set Subtraction: `s & ~t;`
-* Extract lowest set bit: `s & (-s);`
-* Extract lowest unset bit: `~s & (s + 1);`
-* Swap Values:
-             ```
-                x ^= y;
-                y ^= x;
-                x ^= y;
-             ```
-
-## Runtime Analysis
-
-#### Big O Notation
-* *Big O Notation* is used to describe the upper bound of a particular algorithm. Big O is used to describe worst case scenarios
-
-#### Little O Notation
-* *Little O Notation* is also used to describe an upper bound of a particular algorithm; however, Little O provides a bound
-  that is not asymptotically tight
-
-#### Big Ω Omega Notation
-* *Big Omega Notation* is used to provide an asymptotic lower bound on a particular algorithm
-
-#### Little ω Omega Notation
-* *Little Omega Notation* is used to provide a lower bound on a particular algorithm that is not asymptotically tight
-
-#### Theta Θ Notation
-* *Theta Notation* is used to provide a bound on a particular algorithm such that it can be "sandwiched" between
-  two constants (one for an upper limit and one for a lower limit) for sufficiently large values
-  
- ## Data Structures and Algorithms Video Courses
-
-- [CS 61B - Data Structures, Jonathan Shewchuk - UC Berkeley](https://people.eecs.berkeley.edu/~jrs/61b/) ([Videos](https://www.youtube.com/playlist?list=PL4BBB74C7D2A1049C))
-- [CS 61B - Data Structures, Josh Hug, Spring 2016 - UC Berkeley](http://datastructur.es/sp16/)
-- [MOOC - Design and Analysis of Algorithms Part 1 - Prof Roughgarden - Coursera](https://www.youtube.com/playlist?list=PLLH73N9cB21W1TZ6zz1dLkyIm50HylGyg) ([Part 2](https://www.youtube.com/playlist?list=PLLH73N9cB21VPj3H2xwTTye5TC8-UniA2))
-- [MOOC - Algorithms Part 1 - Prof Sedgewick](https://www.youtube.com/playlist?list=PLUX6FBiUa2g4YWs6HkkCpXL6ru02i7y3Q) ([Part 2](https://www.youtube.com/playlist?list=PLqD_OdMOd_6YixsHkd9f4sNdof4IhIima))
-- [6.006 - Introduction to Algorithms, MIT OCW](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/)
-- [CSE 373 - Analysis of Algorithms, Stony Brook - Prof Skiena](http://www.cs.sunysb.edu/~algorith/video-lectures/)
-- [COP 3530 Data Structures and Algorithms, Prof Sahni, UFL](http://www.cise.ufl.edu/~sahni/cop3530/) ([Videos](http://www.cise.ufl.edu/academics/courses/preview/cop3530sahni/))
-- [CS225 - Data Structures - University of Illinois at Urbana-Champaign](https://chara.cs.illinois.edu/cs225/lectures/)
-- [CS2 - Data Structures and Algorithms - Richard Buckland - UNSW](https://www.youtube.com/playlist?list=PLE621E25B3BF8B9D1)
-- [Data Structures - Pepperdine University](https://itunes.apple.com/us/course/data-structures/id546468797)
-- [CS 161 - Design and Analysis of Algorithms, Prof. Tim Roughgarden, Stanford University](http://openclassroom.stanford.edu/MainFolder/CoursePage.php?course=IntroToAlgorithms)
-- [6.046J - Introduction to Algorithms - Fall 2005, MIT OCW](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/)
-- [6.046 - Design and Analysis of Algorithms, Spring 2015 - MIT OCW](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/lecture-videos/)
-- [CS 473 - Algorithms - University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs473/sp2016/lectures.html) ([Notes - Jeff Erickson](http://jeffe.cs.illinois.edu/teaching/algorithms/))
-- [Programming Challenges - Prof Skiena](http://www.algorist.com/programming_challenges/)
-- [16s-4102 - Algorithms, University of Virginia](http://www.cs.virginia.edu/~shelat/16s-4102/) ([Youtube](https://www.youtube.com/channel/UCxXYk53cSZof2bR_Ax0uJYQ/videos))
-- [CS 170 Algorithms - Spring 2015 - UCBerkeley](https://www.youtube.com/playlist?list=PL-XXv-cvA_iDbtIylJDpPPJfaFweeaR-3)
-- [ECS 122A - Algorithm Design and Analysis, UC Davis](http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html)
-- [CSEP 521 - Applied Algorithms, Winter 2013 - University of Washington](http://courses.cs.washington.edu/courses/csep521/13wi/) ([Videos](http://courses.cs.washington.edu/courses/csep521/13wi/video/))
-- [Data Structures And Algorithms - IIT Delhi](http://nptel.ac.in/courses/106102064/)
-- [Design and Analysis of Algorithms - IIT Bombay](http://nptel.ac.in/courses/106101060/)
-- [Programming, Data Structures and Algorithms - IIT Madras](http://nptel.ac.in/courses/106106127/)
-- [Design and Analysis of Algorithms - IIT Madras](http://nptel.ac.in/courses/106106131/)
-- [Fundamental Algorithms:Design and Analysis - IIT Kharagpur](http://nptel.ac.in/courses/106105157/)
-- [Programming and Data Structure - IIT Kharagpur](http://nptel.ac.in/courses/106105085/)
-- [Programming, Data structures and Algorithms - IIT Madras](http://nptel.ac.in/courses/106106133/)
-- [Programming, Data Structures and Algorithms in Python - IIT Madras](http://nptel.ac.in/courses/106106145/)
-- [Programming and Data structures (PDS) - IIT Madras](http://nptel.ac.in/courses/106106130/)
-- [COP 5536 Advanced Data Structures, Prof Sahni - UFL](http://www.cise.ufl.edu/~sahni/cop5536/index.html) ([Videos](http://www.cise.ufl.edu/academics/courses/preview/cop5536sahni/))
-- [CS 261 - A Second Course in Algorithms, Stanford University](http://theory.stanford.edu/~tim/w16/w16.html) ([Youtube](https://www.youtube.com/playlist?list=PLEGCF-WLh2RJh2yDxlJJjnKswWdoO8gAc))
-- [Informatics 2B - Algorithms, Data Structures and Learning- University of Edinburgh](http://groups.inf.ed.ac.uk/vision/VIDEO/2013/inf2b-adsl.htm)
-- [CS 224 - Advanced Algorithms, Harvard University](http://people.seas.harvard.edu/~minilek/cs224/fall14/index.html) ([Lecture Videos](http://people.seas.harvard.edu/~minilek/cs224/fall14/lec.html)) ([Youtube](https://www.youtube.com/playlist?list=PL2SOU6wwxB0uP4rJgf5ayhHWgw7akUWSf))
-- [CS 6150 - Advanced Algorithms (Fall 2016), University of Utah](https://www.youtube.com/playlist?list=PLbuogVdPnkCp8X9FHOglnLqFjyvqGLftx)
-- [ECS 222A - Graduate Level Algorithm Design and Analysis, UC Davis](http://web.cs.ucdavis.edu/~gusfield/cs222f07/videolist.html)
-- [6.851 - Advanced Data Structures, MIT](http://courses.csail.mit.edu/6.851/spring14/lectures/) ([MIT OCW](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-851-advanced-data-structures-spring-2012/lecture-videos/))
-- [6.854 - Advanced Algorithms, MIT](https://www.youtube.com/playlist?list=PL6ogFv-ieghdoGKGg2Bik3Gl1glBTEu8c) ([Prof. Karger lectures](https://www.youtube.com/channel/UCtv9PiQVUDzsT4yl7524DCg/videos))
-- [CS264 Beyond Worst-Case Analysis, Fall 2014 - Tim Roughgarden Lecture](http://theory.stanford.edu/~tim/f14/f14.html) ([Youtube](https://www.youtube.com/playlist?list=PLEGCF-WLh2RL8jsZpaf2tLHa5LotFEt5b))
-- [CS364A Algorithmic Game Theory, Fall 2013 - Tim Roughgarden Lectures](https://www.youtube.com/playlist?list=PLEGCF-WLh2RJBqmxvZ0_ie-mleCFhi2N4)
-- [CS364B Advanced Mechanism Design, Winter 2014 - Tim Roughgarden Lectures](https://www.youtube.com/playlist?list=PLEGCF-WLh2RI77PL4gwLld_OU9Zh3TCX9)
-- [Algorithms - Aduni](http://aduni.org/courses/algorithms/index.php?view=cw)
-- [Advanced Topics in Algorithms and Datastructures - SS 2005 - Universität Freiburg](https://electures.informatik.uni-freiburg.de/portal/web/guest/detail/-/modulnavigation/view/4/252/)
-- [Algorithmentheorie/Algorithms Theory - WS 2013 - Universität Freiburg](https://electures.informatik.uni-freiburg.de/portal/web/guest/detail/-/modulnavigation/view/5402/16009/) ([WS 2011](https://electures.informatik.uni-freiburg.de/portal/web/guest/detail/-/modulnavigation/view/4003/12514/))
-- [Theory I - SS 2010 - Universität Freiburg](https://electures.informatik.uni-freiburg.de/portal/web/guest/detail/-/modulnavigation/view/2103/8701/)
-- [6.889 - Algorithms for Planar Graphs and Beyond (Fall 2011) MIT](http://courses.csail.mit.edu/6.889/fall11/lectures/)
-- [6.890 Algorithmic Lower Bounds: Fun with Hardness Proofs - MIT OCW](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-890-algorithmic-lower-bounds-fun-with-hardness-proofs-fall-2014/)
-- [Computer Algorithms - 2 - IIT Kanpur](http://nptel.ac.in/courses/106104019/)
-- [Parallel Algorithm - IIT Kanpur](http://nptel.ac.in/courses/106104120/)
-- [Graph Theory - IISC Bangalore](http://nptel.ac.in/courses/106108054/)
-  
 ### IDE
 XCODE
 
