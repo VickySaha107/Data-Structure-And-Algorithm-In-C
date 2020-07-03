@@ -1,4 +1,4 @@
-# Data-Structure-And-Algorithms
+# Data-Structure-And-Algorithm
 ## Data Structures
 ### Linked List
  * A *Linked List* is a linear collection of data elements, called nodes, each
