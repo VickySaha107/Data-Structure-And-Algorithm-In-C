@@ -1,4 +1,7 @@
 # Data-Structure-And-Algorithm
+
+<img width="1402" alt="Screenshot 2020-07-04 at 10 32 46 PM" src="https://user-images.githubusercontent.com/65163298/86517407-57e78400-be46-11ea-8b7b-d86b722cbd6a.png">
+
 ## Data Structures
 
 - ### Arrays
