@@ -563,3 +563,7 @@ MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports)
 Processor Name: Quad-Core Intel Core i5
 Processor Speed: 1.4 GHz
 Memory: 8 GB
+
+## License
+
+[MIT](./LICENSE.txt)
