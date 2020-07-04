@@ -565,5 +565,5 @@ Processor Speed: 1.4 GHz
 Memory: 8 GB
 
 ## License
-
+https://github.com/VickySaha107/Data-Structure-And-Algorithm-In-C/blob/master/LICENSE
 [Apache-2.0](./LICENSE.txt)
