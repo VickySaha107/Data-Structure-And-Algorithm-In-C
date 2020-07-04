@@ -1,4 +1,4 @@
-# Data Structure And Algorithm In C
+# Data Structure And Algorithm
 
 ![h-heyerlein-ndja2LJ4IcM-unsplash](https://user-images.githubusercontent.com/65163298/86518406-8453ce00-be4f-11ea-9b7b-2aa591b0d71d.jpg)
 
