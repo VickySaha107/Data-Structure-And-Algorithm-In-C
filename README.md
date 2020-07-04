@@ -566,4 +566,4 @@ Memory: 8 GB
 
 ## License
 
-[MIT](./LICENSE.txt)
+[Apache-2.0](./LICENSE.txt)
