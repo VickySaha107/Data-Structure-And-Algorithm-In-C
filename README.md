@@ -564,6 +564,5 @@ Processor Name: Quad-Core Intel Core i5
 Processor Speed: 1.4 GHz
 Memory: 8 GB
 
-## License
-LICENSE
--[MIT](./LICENSE.txt)
+## LICENSE
+-[MIT](https://github.com/VickySaha107/Data-Structure-And-Algorithm-In-C/blob/master/LICENSE)
