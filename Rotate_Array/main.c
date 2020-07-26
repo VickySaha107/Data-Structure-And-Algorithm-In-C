@@ -48,7 +48,7 @@ int main()
 //    leftRotate(arr, 2, 7);
     RightReversal(arr,3,7);
     Display(arr, 7);
-    printf("\n");
+    printf("\n ");
     return 0;
 }
 
