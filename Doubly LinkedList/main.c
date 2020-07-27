@@ -47,7 +47,7 @@ void Insert(struct Node*p,int pos,int val){
     struct Node*t;int i;
     t=(struct Node*)malloc(sizeof(struct Node));
     t->data=val;
-    if (pos<0||pos>count(Head)) {
+    if (pos<0||pos>count(Head)){
         return;
     }
     else if (pos==0){
